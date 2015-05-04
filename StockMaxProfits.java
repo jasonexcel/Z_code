@@ -13,7 +13,8 @@ public class StockMaxProfits {
 		System.out.println(calProfit(arr));
 		System.out.println(calProfitSJ(arr));
 	}
-	
+	// worst condition:
+	// {5, 4, 3, 2, 1}
 	public static long calProfit(int[] prices) {
         if (prices == null || prices.length < 2) {
             return 0;
