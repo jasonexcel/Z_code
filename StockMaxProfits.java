@@ -6,6 +6,7 @@ public class StockMaxProfits {
 
 	/**
 	 * @param args
+	 * https://www.hackerrank.com/challenges/stockmax
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -13,8 +14,7 @@ public class StockMaxProfits {
 		System.out.println(calProfit(arr));
 		System.out.println(calProfitSJ(arr));
 	}
-	// worst condition:
-	// {5, 4, 3, 2, 1}
+	// O(N)
 	public static long calProfit(int[] prices) {
         if (prices == null || prices.length < 2) {
             return 0;
@@ -48,6 +48,7 @@ public class StockMaxProfits {
         return profit;
     }
 
+	//bad
 	public static long calProfitSJ(int[] prices) {
 		if(prices == null || prices.length < 2) {
 			return 0;

@@ -1,5 +1,7 @@
 package Zcode.Z_code;
 
+import java.util.HashMap;
+
 public class StringMatch {
 
 	/**
@@ -14,5 +16,57 @@ s2的形式是一个字母加上一个符号，正号代表有两个前面的字
 		// TODO Auto-generated method stub
 
 	}
-
+	public static int numDistinctDP(String s1, String s2){
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        //transform s2
+        for(int i = 0; i < s2.length(); i += 2){
+            char c = s2.charAt(i);
+            sb2.append(c);
+            map.put(c, s2.charAt(i + 1) == '+'? 1: 3);
+        }
+        s2 = sb2.toString();
+        //transform s1
+        for(int i = 0; i < s1.length() - 1; i++){
+            char c = s1.charAt(i);
+            if(map.containsKey(c)){
+                int value = map.get(c);
+                if(isValid(s1, i, value, c)){
+                    sb1.append(c);
+                }
+            }
+        }
+        //cannot match s2 to subsequence of sb1
+        if(sb1.length() < s2.length()) {
+        	return 0;
+        }
+        s1 = sb1.toString();
+        //start DP
+        int[][] num = new int[s1.length() + 1][s2.length() + 1];
+        for(int i = 0; i <= s1.length(); i++){
+        	num[i][0] = 1;
+        }
+        for(int i = 1; i <= s1.length(); i++){
+        	for(int j = 1; j <= s2.length(); j++){
+        		num[i][j] += num[i - 1][j];
+        		if(s1.charAt(i - 1) == s2.charAt(j - 1)){
+        			num[i][j] += num[i - 1][j - 1];
+        		}
+        	}
+        }
+        return num[s1.length()][s2.length()];
+	}
+	
+	private static boolean isValid(String s1, int i, int length, char c) {
+		if(i+length>s1.length()) {
+			return false;
+		}
+		for(int start=0; start<length; start++) {
+			if(s1.charAt(i+start) != c) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
