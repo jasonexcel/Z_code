@@ -102,4 +102,12 @@ public class StockMaxProfits {
 		}
 		return res;
 	}
+	
+	public static int xor(int[] input) {
+		if (input.length % 2 == 0) {
+			return 0;
+		} else {
+			return input[input.length/2];
+		}
+	}
 }
