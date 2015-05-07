@@ -75,39 +75,4 @@ public class StockMaxProfits {
 		return profit + helper(prices, highestIndex+1);
 	}
 	
-	public static int xor(int[] input) {
-		if (input == null || input.length == 0) {
-			return 0;
-		}
-		int len = input.length;
-		int[][] dp = new int[len][len];
-		// Basic subarrays.
-		for (int i=0; i<len; i++) {
-			dp[0][i] = input[i];
-		}
-		// First loop, length of subarrays.
-		// Starts from 2.
-		for (int i=2; i<=len; i++) {
-			for (int j=0; j<=len-i; j++) {
-				dp[i-1][j] = input[j] ^ dp[i-2][j+1];
-			}
-		}
-		
-		int res = 0;
-		// XOR all subarrays. 0 does not matter. because num ^ 0 = num.
-		for (int i=0; i<len; i++) {
-			for (int j=0; j<len; j++) {
-				res ^= dp[i][j];
-			}
-		}
-		return res;
-	}
-	
-	public static int xor(int[] input) {
-		if (input.length % 2 == 0) {
-			return 0;
-		} else {
-			return input[input.length/2];
-		}
-	}
 }
