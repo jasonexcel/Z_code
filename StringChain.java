@@ -59,11 +59,16 @@ public class StringChain {
 	private int subMaxLength(String s, Map<String, Integer> localMaxMap) {
 		String sub;
 		int maxLen = 0;
-		for(int i=0; i<s.length(); i++) {
-			sub = s.substring(0, i) + s.substring(i+1, s.length());
-			if(localMaxMap.containsKey(sub)) {
-				maxLen = Math.max(maxLen,  localMaxMap.get(sub));
+		StringBuilder sb = new StringBuilder(s);
+		
+		for(int i=0; i<sb.length(); i++) {
+			char c = sb.charAt(i);
+			sb.deleteCharAt(i);
+			//sub = s.substring(0, i) + s.substring(i+1, s.length());
+			if(localMaxMap.containsKey(sb.toString())) {
+				maxLen = Math.max(maxLen,  localMaxMap.get(sb.toString()));
 			}
+			sb.insert(i, c);
 		}
 		return maxLen;
 	}	
