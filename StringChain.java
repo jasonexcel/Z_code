@@ -5,6 +5,9 @@ public class StringChain {
 
 	/**
 	 * @param args
+	 * 类似word ladder，对于一个单词删掉任何一个字母，如果新单词出现在给的词典里 那么就形成一个 chain： 
+	 * old word -> new word -> newer word, 求最长长度(return int) 
+	 * 比如给vector<string> w = {a,ba,bca,bda,bdca} 最长是4： bdca->bda->ba->a;
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
